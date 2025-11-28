@@ -1,7 +1,5 @@
-<!--begin::Card-->
-<div class="card card-flush w-lg-650px py-5">
     <!--begin::Card body-->
-    <div class="card-body py-15 py-lg-20">
+    <div class="card-body py-15 py-lg-5">
 
         <!--begin::Page bg image-->
         <style>
@@ -42,5 +40,3 @@
 
     </div>
     <!--end::Card body-->
-</div>
-<!--end::Card-->

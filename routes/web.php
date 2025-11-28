@@ -11,26 +11,36 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
+    // DASHBOARD – tanpa permission dulu, yang penting sudah login
     Route::get('/', [DashboardController::class, 'index']);
-
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::name('user-management.')->group(function () {
-        Route::resource('/user-management/users', UserManagementController::class);
-        Route::resource('/user-management/roles', RoleManagementController::class);
-        Route::resource('/user-management/permissions', PermissionManagementController::class);
-    });
+    // USER MANAGEMENT – butuh permission: "read user management"
+    Route::prefix('user-management')->name('user-management.')->group(function () {
 
+        Route::resource('users', UserManagementController::class)
+            ->middleware('permission:read user management')
+            ->names('users');
+
+        Route::resource('roles', RoleManagementController::class)
+            ->middleware('permission:read user management')
+            ->names('roles');
+
+        Route::resource('permissions', PermissionManagementController::class)
+            ->middleware('permission:read user management')
+            ->names('permissions');
+    });
 });
+
+/*
+|--------------------------------------------------------------------------
+| Public / misc
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/error', function () {
     abort(500);

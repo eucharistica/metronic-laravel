@@ -40,6 +40,7 @@
 				<!--end:Menu content-->
 			</div>
 			<!--end:Menu item-->
+			@canany(['read user management', 'write user management', 'create user management'])
 			<!--begin:Menu item-->
 			<div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->routeIs('user-management.*') ? 'here show' : '' }}">
 				<!--begin:Menu link-->
@@ -50,8 +51,9 @@
 				</span>
 				<!--end:Menu link-->
 				<!--begin:Menu sub-->
-				<div class="menu-sub menu-sub-accordion">
+				<div class="menu-sub menu-sub-accordion">					
 					<!--begin:Menu item-->
+					@can('read user management')
 					<div class="menu-item">
 						<!--begin:Menu link-->
 						<a class="menu-link {{ request()->routeIs('user-management.users.*') ? 'active' : '' }}" href="{{ route('user-management.users.index') }}">
@@ -62,8 +64,11 @@
 						</a>
 						<!--end:Menu link-->
 					</div>
+					@endcan
 					<!--end:Menu item-->
+					
 					<!--begin:Menu item-->
+					@can('read user management')
 					<div class="menu-item">
 						<!--begin:Menu link-->
 						<a class="menu-link {{ request()->routeIs('user-management.roles.*') ? 'active' : '' }}" href="{{ route('user-management.roles.index') }}">
@@ -74,8 +79,11 @@
 						</a>
 						<!--end:Menu link-->
 					</div>
+					@endcan
 					<!--end:Menu item-->
+										
 					<!--begin:Menu item-->
+					@can('read user management')
 					<div class="menu-item">
 						<!--begin:Menu link-->
 						<a class="menu-link {{ request()->routeIs('user-management.permissions.*') ? 'active' : '' }}" href="{{ route('user-management.permissions.index') }}">
@@ -86,12 +94,13 @@
 						</a>
 						<!--end:Menu link-->
 					</div>
-					<!--end:Menu item-->
+					@endcan
+					<!--end:Menu item-->					
 				</div>
 				<!--end:Menu sub-->
 			</div>
 			<!--end:Menu item-->
-			
+			@endcanany			
 		</div>
 		<!--end::Menu-->
 	</div>

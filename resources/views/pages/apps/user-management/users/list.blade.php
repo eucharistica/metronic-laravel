@@ -25,6 +25,7 @@
             <!--begin::Card toolbar-->
             <div class="card-toolbar">
                 <!--begin::Toolbar-->
+                @can('write user management')
                 <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                     <!--begin::Add user-->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user">
@@ -33,6 +34,7 @@
                     </button>
                     <!--end::Add user-->
                 </div>
+                @endcan
                 <!--end::Toolbar-->
 
                 <!--begin::Modal-->
